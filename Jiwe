@@ -1,0 +1,20 @@
+from PIL import Image
+import numpy as np
+
+# Load the image
+image_path = "/mnt/data/Scrip.jpg"
+image = Image.open(image_path)
+
+# Convert image to grayscale (optional step to simplify binary conversion)
+image_gray = image.convert("L")
+
+# Convert the grayscale image to a numpy array
+image_array = np.array(image_gray)
+
+# Convert the numpy array to a binary string
+binary_string = ''.join(format(pixel, '08b') for row in image_array for pixel in row)
+
+# Calculate the length of the binary string
+binary_length = len(binary_string)
+
+binary_length, binary_string[:100]  # Return the length and first 100 bits for verification
